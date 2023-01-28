@@ -8,15 +8,13 @@ const Filter = ({ handleInputChange, value }) => {
       <label className={styles.label}>Find contacts by name</label>
       <input
         className={styles.input}
-        // зв'язок інпуту і state
         value={value}
         onChange={handleInputChange}
         type="text"
         name="filter"
         pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
         title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-        required
-      />
+        required />
     </div>
   );
 };

@@ -17,20 +17,11 @@ import styles from './ContactForm/contactForm.module.css';
     ],
     filter: '',
   };
-  nameInputId = nanoid();
-  numberInput = nanoid();
-  filterInput = nanoid();
 
-  handleFilter = ({ target }) => {
-    this.setState({ filter: target.value });
-  };
-  
-     
   handleSubmit = ({ name, number }) => {
     if (this.isDublicate({ name, number })) {
       return alert(`${name}: ${number} is already in contacts`);
     }
-  
     this.setState(prevState => {
       const { contacts } = prevState;
       const newContact = {
@@ -40,25 +31,28 @@ import styles from './ContactForm/contactForm.module.css';
       };
       return { contacts: [newContact, ...contacts] };
     });
+      return true;
      };
      
-
   removeContact = id => {
     this.setState(({ contacts }) => {
       const newContact = contacts.filter(contact => contact.id !== id);
       return { contacts: newContact };
     });
      };
+
+  handleFilter = ({ target }) => {
+    this.setState({ filter: target.value });
+  };
      
 
   isDublicate({ name, number }) {
     const normalizedName = name.toLowerCase();
     const normalizedNumber = number.toLowerCase();
     const { contacts } = this.state;
-    const result = contacts.find(({ name, number }) => {
-      return (
-        name.toLowerCase() === normalizedName &&
-        number.toLowerCase() === normalizedNumber
+    const result = contacts.find(({ name }) => {
+        return (
+            name.toLowerCase() === normalizedName
       );
     });
 
