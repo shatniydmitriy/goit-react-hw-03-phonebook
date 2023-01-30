@@ -20,7 +20,8 @@ import styles from './ContactForm/contactForm.module.css';
 
   handleSubmit = ({ name, number }) => {
     if (this.isDublicate({ name, number })) {
-      return alert(`${name}: ${number} is already in contacts`);
+        alert(`${name}: ${number} is already in contacts`);
+        return false;
     }
     this.setState(prevState => {
       const { contacts } = prevState;
@@ -46,9 +47,8 @@ import styles from './ContactForm/contactForm.module.css';
   };
      
 
-  isDublicate({ name, number }) {
+  isDublicate({ name }) {
     const normalizedName = name.toLowerCase();
-    const normalizedNumber = number.toLowerCase();
     const { contacts } = this.state;
     const result = contacts.find(({ name }) => {
         return (
